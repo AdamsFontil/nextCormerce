@@ -1,5 +1,6 @@
-'use client'
+
 import React from 'react';
+import Image from 'next/image';
 
 const Product = () => {
   // Dummy product data
@@ -17,7 +18,7 @@ const Product = () => {
       <div className="product-list grid grid-cols-2 md:grid-cols-3 gap-6 p-5">
         {products.map((product) => (
           <div key={product.id} className="product-details flex flex-col items-center p-5">
-            <img className='w-96 h-96' src={`/pics_for_store/${product.image}`} alt={product.name} />
+            <Image width={720} height={720} className='w-96 h-96' src={`/pics_for_store/${product.image}`} alt={product.name} />
             <h2>{product.name}</h2>
             <p>${product.price.toFixed(2)}</p>
             <button className='p-4 border-2 border-gray-600 bg-red-400 text-gray-600 hover:text-lg'>Add to Cart</button>
