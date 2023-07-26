@@ -25,7 +25,7 @@ const Home = () => {
           </p>
         </div>
         <div className="w-11/12 flex justify-end rounded">
-        <Image width={720} height={720} className='' src="/pics_for_store/bag.jpg" alt="watch" />
+        <Image width={720} height={720} className='' src="/Pics_for_store/bag.jpg" alt="watch" />
 
         </div>
       </div>
