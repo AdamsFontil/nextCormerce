@@ -6,7 +6,7 @@ import SignUp from './signup/page';
 import Login from './login/page';
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('https://little-violet-3254.fly.dev');
 
 const Account = () => {
   const [hasSavedUser, setHasSavedUser] = useState(false);
@@ -24,7 +24,9 @@ const Account = () => {
   // Call the function to check for a saved user when the component mounts
   useEffect(() => {
     // Ensure this code runs only on the client-side
-    checkForSavedUser();
+    if (typeof window !== 'undefined') {
+      checkForSavedUser();
+    }
   }, []);
 
   const handleLogout = async () => {
@@ -47,11 +49,14 @@ const Account = () => {
     }
   };
 
-
-  // console.log('n---',userObject)
-  // // console.log('narrow---',savedUser.record.username)
-  // console.log('narrower---',userObject.record.username)
-  // const name = userObject.record.username
+  let name = '';
+  if (typeof window !== 'undefined') {
+    const username = localStorage.getItem('user');
+    if (username) {
+      const userObject = JSON.parse(username);
+      name = userObject?.record?.username || '';
+    }
+  }
 
   return (
     <>
@@ -60,7 +65,7 @@ const Account = () => {
         <main className='p-7 h-screen flex flex-col gap-5'>
           <div>
           <h1>Ahoy!</h1>
-          <p>Hello, , welcome to Santa's Collections and Beauty Website. We're to have you here</p>
+          <p>Hello, <span className='p-2 bg-red-400'>{name} </span>, welcome to Santa's Collections and Beauty Website. We're to have you here</p>
           <p>This is this accounts Page if you're seeing this then you're logged in.</p>
           <p>If you aren't logged in you won't see this page and you'll have to sign up or login btw you can always
             log out and shop as a guest. Our main site is with Shopify so stick around here to see our products,

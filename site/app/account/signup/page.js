@@ -1,12 +1,11 @@
-'use client'
+import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import PocketBase from 'pocketbase';
-// import { useRouter } from 'next/router';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('https://little-violet-3254.fly.dev');
 
-const SignUp = ({setShowLoginForm, setHasSavedUser}) => {
+const SignUp = ({ setShowLoginForm, setHasSavedUser }) => {
   const initialValues = {
     username: '',
     email: '',
@@ -25,14 +24,6 @@ const SignUp = ({setShowLoginForm, setHasSavedUser}) => {
       .required('Password confirmation is required'),
   });
 
-  // const router = useRouter();
-
-  const handleLogin = () => {
-    console.log('login-----')
-    setShowLoginForm(true);
-    // router.push('/login'); // Use router.push to navigate to the '/login' page
-  };
-
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const data = {
@@ -48,36 +39,70 @@ const SignUp = ({setShowLoginForm, setHasSavedUser}) => {
 
       // Save the authenticated user data to local storage
       localStorage.setItem('user', JSON.stringify(authData));
-      setHasSavedUser(true)
+      setHasSavedUser(true);
 
       // Reset the form after successful submission
       setSubmitting(false);
-      // router.push('/account'); // Example: Redirect to the dashboard after sign up
     } catch (error) {
       console.error('Failed to create user:', error);
       setSubmitting(false);
     }
   };
 
+  const handleLogin = () => {
+    console.log('login-----');
+    setShowLoginForm(true);
+  };
+
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       {({ isSubmitting }) => (
-        <Form className='mt-10 m-10 text-lg rounded-md p-5 flex flex-col gap-4 bg-red-400'>
-          <Field type="text" name="username" placeholder="Username" />
-          <ErrorMessage name="username" component="div" />
-          <Field type="email" name="email" placeholder="Email" />
-          <ErrorMessage name="email" component="div" />
-          <Field type="password" name="password" placeholder="Password" />
-          <ErrorMessage name="password" component="div" />
-          <Field type="password" name="passwordConfirm" placeholder="Repeat Password" />
-          <ErrorMessage name="passwordConfirm" component="div" />
-          <button className='p-2 border-2' type="submit" disabled={isSubmitting}>
-            Sign Up
-          </button>
-          <button className='p-2 border-2 bg-gray-500' type="button" onClick={handleLogin}>
-            Sign In
-          </button>
-        </Form>
+        <div className='flex p-5 justify-center'>
+          <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+            <div className="card-body">
+              <Form>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Username</span>
+                  </label>
+                  <Field type="text" name="username" placeholder="Username" className="input input-bordered" />
+                  <ErrorMessage name="username" component="div" className="text-error" />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <Field type="email" name="email" placeholder="Email" className="input input-bordered" />
+                  <ErrorMessage name="email" component="div" className="text-error" />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <Field type="password" name="password" placeholder="Password" className="input input-bordered" />
+                  <ErrorMessage name="password" component="div" className="text-error" />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Repeat Password</span>
+                  </label>
+                  <Field type="password" name="passwordConfirm" placeholder="Repeat Password" className="input input-bordered" />
+                  <ErrorMessage name="passwordConfirm" component="div" className="text-error" />
+                </div>
+                <div className="form-control mt-6">
+                  <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                    Sign Up
+                  </button>
+                </div>
+                <div className="form-control mt-4">
+                  <button type="button" className="btn btn-secondary" onClick={handleLogin}>
+                    Sign In
+                  </button>
+                </div>
+              </Form>
+            </div>
+          </div>
+        </div>
       )}
     </Formik>
   );
