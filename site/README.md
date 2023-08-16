@@ -37,3 +37,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ---Notes
 use indicator for cart
 improve form looks with daisy
+improve the navbar on mobile
+also padding may be needed on the products page, this is super noticable on mobile
