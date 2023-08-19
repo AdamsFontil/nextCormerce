@@ -58,33 +58,44 @@ const Account = () => {
     }
   }
 
-  return (
-    <>
-      {/* eslint-disable react/no-unescaped-entities */}
-      {hasSavedUser ? (
-        <main className='p-7 h-screen flex flex-col gap-5'>
-          <div>
+return (
+  <>
+    {/* eslint-disable react/no-unescaped-entities */}
+    {hasSavedUser ? (
+      <main className='p-5 h-screen flex flex-col gap-5'>
+         <div>
           <h1>Ahoy!</h1>
-          <p>Hello, <span className='p-2 bg-red-400'>{name} </span>, welcome to Santa's Collections and Beauty Website. We're to have you here</p>
+          <p>Hello, <span className='p-2'>{name} </span>, welcome to Santa's Collections and Beauty Website. We're to have you here</p>
           <p>This is this accounts Page if you're seeing this then you're logged in.</p>
           <p>If you aren't logged in you won't see this page and you'll have to sign up or login btw you can always
             log out and shop as a guest. Our main site is with Shopify so stick around here to see our products,
             sign up for our email lists, and follow our social medias. </p>
           </div>
-          <button className='bg-red-500 p-2 hover:text-lg' onClick={handleLogout}>Logout</button>
-        </main>
-      ) : (
-        <>
-          {showLoginForm ? (
-            // Render the login form when showLoginForm is true
-            <Login setHasSavedUser={setHasSavedUser} setShowLoginForm={setShowLoginForm} />
-          ) : (
-            <SignUp setShowLoginForm={setShowLoginForm} setHasSavedUser={setHasSavedUser} />
-          )}
-        </>
-      )}
-    </>
-  );
+          <button className='p-2 hover:text-lg' onClick={handleLogout}>Logout</button>
+      </main>
+    ) : (
+      <div className='md:grid flex flex-col p-5 gap-0' style={{ gridTemplateColumns: '1fr 3fr' }}>
+  <div className='max-w-sm md:text-2xl flex flex-col justify-center md:gap-9  p-5'>
+    <p> Sign up/Login to view your account</p>
+    <div className='flex flex-col md:pt-4 md:gap-3'>
+    <p> Don't want to create an account sign in with our demo account.</p>
+    <p>Username: test</p>
+    <p>Password: 12345678</p>
+    </div>
+  </div>
+  <div>
+    {showLoginForm ? (
+      // Render the login form when showLoginForm is true
+      <Login setHasSavedUser={setHasSavedUser} setShowLoginForm={setShowLoginForm} />
+    ) : (
+      <SignUp setShowLoginForm={setShowLoginForm} setHasSavedUser={setHasSavedUser} />
+    )}
+  </div>
+</div>
+
+    )}
+  </>
+);
 };
 
 export default Account;

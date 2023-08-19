@@ -20,7 +20,7 @@ const Product = () => {
     <main className='flex flex-col justify-center'>
       <div className="product-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
         {products.map((product) => (
-          <div key={product.id} className="card w-96 bg-base-100 shadow-xl">
+          <div key={product.id} className="card max-w-96 bg-base-100 shadow-xl">
             <Image width={720} height={720} className='w-96 h-96' src={`/Pics_for_store/${product.name}.jpg`} alt={product.name} />
 
             <div className="card-body">

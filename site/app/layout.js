@@ -3,13 +3,20 @@
 import './globals.css'
 import Link from 'next/link';
 import { Inter } from 'next/font/google'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+
+let name = '';
+if (typeof window !== 'undefined') {
+  const username = localStorage.getItem('user');
+  if (username) {
+    const userObject = JSON.parse(username);
+    name = userObject?.record?.username || '';
+  }
+}
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  Title: 'Santa Collections and Beauty - Bringing Magic to Your Shopping Experience!',
+  Title: 'Santa\'s Collections - Bringing Magic to Your Shopping Experience!',
 
 Description: 'Welcome to Santa Collections and Beauty, where enchanting wonders await you! Step into a world of delightful treasures, curated with love and care by Santa himself. Discover a whimsical assortment of magical products, from charming collectibles to exquisite beauty essentials. Embrace the spirit of the season and indulge in the joy of shopping at our enchanting e-commerce storefront. Unwrap happiness, spread the magic, and find the perfect gifts for your loved ones. Let us be your Santa, delivering smiles and making dreams come true. Explore Santa Collections and Beauty and experience the wonder of a fairy tale shopping adventure!'
 }
@@ -19,23 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <main >
-          {/* <nav className=' bg-red-400 gap-5 p-5 flex justify-around text-white'>
-            <Link className='hover:underline' href="/products">
-              Shop
-            </Link>
-            <Link className='hover:underline' href="/about">
-              About
-            </Link>
-            <Link className='hover:underline text-xl border-2 p-1' href="/">
-              Santa Collections & Beauty
-            </Link>
-            <Link className='hover:underline flex gap-2 items-center' href="/cart">
-            <FontAwesomeIcon className='w-4' icon={faShoppingCart} /> Cart
-          </Link>
-          <Link className='hover:underline flex gap-2 items-center' href="/account">
-            <FontAwesomeIcon className='w-4'   icon={faUser} /> My Account
-          </Link>
-          </nav> */}
+
 
 
 <div class="navbar bg-primary">
@@ -52,7 +43,7 @@ export default function RootLayout({ children }) {
     </div>
   </div>
   <div class="navbar-center text-white">
-    <Link href="/" class="btn btn-ghost normal-case text-xl">Santa's Collections & Beauty</Link>
+    <Link href="/" class="btn btn-ghost normal-case text-xl">Santa's Collections</Link>
   </div>
   <div class="navbar-end">
     <div class="dropdown dropdown-end">
@@ -75,18 +66,37 @@ export default function RootLayout({ children }) {
     <div class="dropdown dropdown-end">
       <label tabindex="0" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full">
-          <img src="/Pics_for_store/Shirt.jpg" alt='AVATAR, show only when logged in' />
+          <img src="/Pics_for_store/icons8-account-48.png" alt='AVATAR, show only when logged in' />
         </div>
       </label>
+      {/* <div>Test user is .... {name} </div> */}
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li>
           <Link href="/account" class="justify-between">
-            Profile
+            Account
+          </Link>
+        </li>
+        {/* <li>
+          <Link href="/account" class="justify-between">
+            Settings
+          </Link>
+        </li> */}
+        <li>
+          <Link href="/account" class="justify-between">
+            Light/Dark Mode
+          </Link>
+        </li>
+        <li>
+          <Link href="/account" class="justify-between">
+            Feedback
             <span class="badge">New</span>
           </Link>
         </li>
-        <Link href="/account">Settings</Link>
-        <Link href="/account">Logout</Link>
+        <li>
+          <Link href="/account" class="justify-between">
+            Logout
+          </Link>
+        </li>
       </ul>
     </div>
   </div>

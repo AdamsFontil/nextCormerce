@@ -58,8 +58,9 @@ const SignUp = ({ setShowLoginForm, setHasSavedUser }) => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       {({ isSubmitting }) => (
-        <div className='flex p-5 justify-center'>
-          <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+        <div className='flex w-full p-5 justify-center'>
+          <div className="card w-full shadow-2xl bg-base-100">
+
             <div className="card-body">
               <Form>
                 <div className="form-control">

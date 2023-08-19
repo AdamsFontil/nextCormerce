@@ -51,7 +51,7 @@ const Login = ({ setHasSavedUser, setShowLoginForm }) => {
   return (
     <>
       <div className='flex p-5 justify-center'>
-        <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card w-full shadow-2xl bg-base-100">
           <div className="card-body">
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleLogin}>
               {({ isSubmitting }) => (
@@ -80,6 +80,8 @@ const Login = ({ setHasSavedUser, setShowLoginForm }) => {
                 </Form>
               )}
             </Formik>
+
+
           </div>
         </div>
       </div>
