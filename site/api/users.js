@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('https://little-violet-3254.fly.dev');
 
 // const data = {
 //     "username": "test_username",
@@ -20,6 +20,10 @@ export async function createUser() {
 }
 
 
+const RECORD_ID = y6x2c1dsep3owdh
 
-// (optional) send an email verification request
-// await pb.collection('users').requestVerification('test@example.com');
+const getOneUser = await pb.collection('users').getOne('RECORD_ID', {
+    expand: 'relField1,relField2.subRelField',
+});
+
+// export async function

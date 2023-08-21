@@ -4,19 +4,13 @@ import './globals.css'
 import Link from 'next/link';
 import { Inter } from 'next/font/google'
 
-let name = '';
-if (typeof window !== 'undefined') {
-  const username = localStorage.getItem('user');
-  if (username) {
-    const userObject = JSON.parse(username);
-    name = userObject?.record?.username || '';
-  }
-}
+
 
 const inter = Inter({ subsets: ['latin'] })
 
+
 export const metadata = {
-  Title: 'Santa\'s Collections - Bringing Magic to Your Shopping Experience!',
+  Title: 'Santa\'s Collections and Beauty - Bringing Magic to Your Shopping Experience!',
 
 Description: 'Welcome to Santa Collections and Beauty, where enchanting wonders await you! Step into a world of delightful treasures, curated with love and care by Santa himself. Discover a whimsical assortment of magical products, from charming collectibles to exquisite beauty essentials. Embrace the spirit of the season and indulge in the joy of shopping at our enchanting e-commerce storefront. Unwrap happiness, spread the magic, and find the perfect gifts for your loved ones. Let us be your Santa, delivering smiles and making dreams come true. Explore Santa Collections and Beauty and experience the wonder of a fairy tale shopping adventure!'
 }
@@ -45,6 +39,8 @@ export default function RootLayout({ children }) {
   <div class="navbar-center text-white">
     <Link href="/" class="btn btn-ghost normal-case text-xl">Santa's Collections</Link>
   </div>
+
+
   <div class="navbar-end">
     <div class="dropdown dropdown-end">
       <label tabindex="0" class="btn text-white btn-ghost btn-circle">
@@ -58,7 +54,7 @@ export default function RootLayout({ children }) {
           <span class="font-bold text-lg">8 Items</span>
           <span class="text-info">Subtotal: $999</span>
           <div class="card-actions">
-            <button class="btn btn-primary btn-block">View cart</button> {/* click this button should take you to the cart page */}
+            <Link href="/cart" class="btn btn-primary btn-block">View cart {/* click this button should take you to the cart page */} </Link>
           </div>
         </div>
       </div>

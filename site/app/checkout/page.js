@@ -6,7 +6,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Home = () => {
+const Checkout = () => {
 
 
   return (
@@ -33,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Checkout;
