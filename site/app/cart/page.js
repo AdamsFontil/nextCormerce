@@ -44,7 +44,7 @@ const Cart = () => {
                   {item.price}
                 </td>
                 <td>
-                <button onClick={() => handleDecreaseQuantity(item)} className="btn btn-ghost btn-xs">-</button>
+                <button onClick={() => handleDecreaseQuantity(item)} className="btn btn-ghost btn-xs" disabled={item.amount === 1}>-</button>
                   {item.amount}
                   <button onClick={() => handleIncreaseQuantity(item)} className="btn btn-ghost btn-xs">+</button>
               </td>

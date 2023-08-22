@@ -12,34 +12,50 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const handleIncreaseQuantity = (item) => {
-    const updatedCart = savedCart.map((cartItem) => {
-      if (cartItem.name === item.name) {
-        return {
-          ...cartItem,
-          amount: cartItem.amount + 1
-        };
-      }
-      return cartItem;
-    });
+    const itemIndex = savedCart.findIndex((cartItem) => cartItem.name === item.name);
 
-    setSavedCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  }
+    if (itemIndex !== -1) {
+      const updatedCart = [...savedCart];
+      updatedCart[itemIndex].amount += 1;
+
+      setSavedCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    } else {
+      const newItem = {
+        ...item,
+        amount: 1,
+      };
+
+      const updatedCart = [...savedCart, newItem];
+
+      setSavedCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+  };
+
+
 
   const handleDecreaseQuantity = (item) => {
-    const updatedCart = savedCart.map((cartItem) => {
-      if (cartItem.name === item.name) {
-        return {
-          ...cartItem,
-          amount: cartItem.amount - 1
-        };
-      }
-      return cartItem;
-    });
+    const itemIndex = savedCart.findIndex((cartItem) => cartItem.name === item.name);
 
-    setSavedCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  }
+    if (itemIndex !== -1) {
+      const updatedCart = [...savedCart];
+      updatedCart[itemIndex].amount -= 1;
+
+      setSavedCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    } else {
+      const newItem = {
+        ...item,
+        amount: 1,
+      };
+
+      const updatedCart = [...savedCart, newItem];
+
+      setSavedCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+  };
 
   const handleRemoveItem = (item) => {
     const updatedCart = savedCart.filter((cartItem) => cartItem.name !== item.name);

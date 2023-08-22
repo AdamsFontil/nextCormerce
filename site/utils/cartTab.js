@@ -1,11 +1,11 @@
-// ParentComponent.js
-import { useCart } from '../utils/cartContext';
-import Layout from './layout'; // Replace with the actual path to your layout.js
+// // ParentComponent.js
+// import { useCart } from '../utils/cartContext';
+// import Layout from './layout'; // Replace with the actual path to your layout.js
 
-const ParentComponent = () => {
-  const { savedCart, totalPrice } = useCart();
+// const ParentComponent = () => {
+//   const { savedCart, totalPrice } = useCart();
 
-  return <Layout savedCart={savedCart} totalPrice={totalPrice}>{/* Other components here */}</Layout>;
-};
+//   return <Layout savedCart={savedCart} totalPrice={totalPrice}>{/* Other components here */}</Layout>;
+// };
 
-export default ParentComponent;
+// export default ParentComponent;
