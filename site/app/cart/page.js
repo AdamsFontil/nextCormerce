@@ -1,77 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import React, { useContext } from 'react';
+import { CartContext } from '../../utils/cartContext'; // Import CartContext, not CartProvider
+
 
 const Cart = () => {
-  const [savedCart, setSavedCart] = useState([]);
-
-  const totalPrice = () => {
-    let totalPrice = 0;
-
-    savedCart.forEach((item) => {
-      totalPrice += item.price * item.amount;
-    });
-    console.log(totalPrice, 'is the total')
-    return totalPrice.toFixed(2);
-  }
-  const totalItems = () => {
-    let totalItems = 0;
-
-    savedCart.forEach((item) => {
-      totalItems += item.amount;
-    });
-    console.log(totalItems, 'is total items')
-    return totalItems
-
-  }
-
-  console.log(totalItems())
-
-  useEffect(() => {
-    const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-    setSavedCart(cartData);
-  }, []);
-
-  console.log('info about cart',savedCart)
-
-  const handleIncreaseQuantity = (item) => {
-    const updatedCart = savedCart.map((cartItem) => {
-      if (cartItem.name === item.name) {
-        return {
-          ...cartItem,
-          amount: cartItem.amount + 1
-        };
-      }
-      return cartItem;
-    });
-
-    setSavedCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  }
-
-  const handleDecreaseQuantity = (item) => {
-    const updatedCart = savedCart.map((cartItem) => {
-      if (cartItem.name === item.name) {
-        return {
-          ...cartItem,
-          amount: cartItem.amount - 1
-        };
-      }
-      return cartItem;
-    });
-
-    setSavedCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  }
-
-  const handleRemoveItem = (item) => {
-    console.log('removing---', item)
-    const updatedCart = savedCart.filter((cartItem) => cartItem.name !== item.name);
-
-    setSavedCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  }
+  const { savedCart, handleIncreaseQuantity, handleDecreaseQuantity, handleRemoveItem, totalPrice } = useContext(CartContext);
 
 
   return (
@@ -119,12 +54,7 @@ const Cart = () => {
               </tr>
             ))}
           </tbody>
-          {/* <tfoot>
-            <tr className='text-2xl'>
-              <th span='4'>Total is </th>
-              <th span='4'>{total()} </th>
-            </tr>
-          </tfoot> */}
+
         </table>
       </div>
       <div className="stats bg-primary text-primary-content ">
