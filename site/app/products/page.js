@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect, useContext } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { getProducts } from '../../api/products';
 import { CartContext } from '../../utils/cartContext';
@@ -32,7 +33,10 @@ const Product = () => {
                 <h2 className="card-title">{product.name}</h2>
                 <p>${product.price.toFixed(2)}</p>
                 <div className="card-actions justify-end">
-                  <button className='btn '>More Details</button>
+                <Link href={`/products/${product.id}`}>
+                  <button className='btn'>More Details</button>
+              </Link>
+
                   {quantityInCart > 0 ? (
                     <div className=''>
                       <button onClick={() => handleDecreaseQuantity(product)} className="btn mr-2 btn-primary">-</button>
