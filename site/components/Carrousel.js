@@ -6,7 +6,7 @@ const Carousel = ({ productName }) => {
 
   // Generate and populate image filenames
   for (let i = 2; i <= 5; i++) {
-    const filename = `${productName}${i}.jpg`;
+    const filename = `${productName.toLowerCase()}${i}.jpg`;
     imageFilenames.push(filename);
   }
 
