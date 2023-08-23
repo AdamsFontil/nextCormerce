@@ -3,6 +3,7 @@
 import './globals.css'
 import Link from 'next/link';
 import { CartProvider } from '../utils/cartContext';
+import Providers from '../utils/reactQueryProvider'
 import CartInfo from '@/components/cartInfo';
 
 
@@ -19,7 +20,7 @@ Description: 'Welcome to Santa Collections and Beauty, where enchanting wonders 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* <Providers> */}
+      <Providers>
       <CartProvider>
       <body>
         <main >
@@ -108,7 +109,7 @@ export default function RootLayout({ children }) {
         </main>
       </body>
       </CartProvider>
-      {/* </Providers> */}
+      </Providers>
     </html>
   )
 }
