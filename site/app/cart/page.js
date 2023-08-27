@@ -1,12 +1,59 @@
 'use client'
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../../utils/cartContext'; // Import CartContext, not CartProvider
+// import { handler } from '../../api/checkout/route'
+import { loadStripe } from "@stripe/stripe-js";
+
+
 
 
 const Cart = () => {
+  const [isLoading, setLoading] = useState(false)
+
   const { savedCart, handleIncreaseQuantity, handleDecreaseQuantity, handleRemoveItem, totalPrice } = useContext(CartContext);
+
+  const lineItems = savedCart.map(item => ({
+    price_data: {
+      currency: 'usd',
+      product_data: {
+        name: item.name, // Use the name of the product from your cart
+      },
+      unit_amount: Math.round(item.price * 100), // Convert price to cents
+    },
+    quantity: item.amount,
+  }));
+
+  const handleCheckout = async () => {
+    setLoading(true);
+
+
+    try {
+      const stripe = await loadStripe("pk_test_51NjBJaDwNGqPBW67pBypDjhiYhRQdWbglOKfIKbiBy3prnLWhAYSNTyfQ2F6NF2Js0LRt0ojGhMsBgTpiro2OBii004hhUtfoE");
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(lineItems), // Pass your cart items here
+      });
+
+      const data = await response.json();
+      const result = await stripe.redirectToCheckout({ sessionId: data.id });
+
+      if (result?.error) {
+        console.log(result.error);
+      }
+    } catch (error) {
+      console.error("Checkout failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
 
 
   return (
@@ -63,7 +110,9 @@ const Cart = () => {
           <div className="stat-title">Total</div>
           <div className="stat-value">{totalPrice()}</div>
           <div className="stat-actions flex gap-2">
-            <Link href='/checkout'><button className="btn btn-sm btn-success">Checkout</button></Link>
+          <button onClick={handleCheckout} className="btn btn-sm btn-success" disabled={isLoading}>
+              {isLoading ? 'Processing...' : 'Checkout'}
+            </button>
             <Link href={'/products'} ><button className="btn btn-sm">Continue Shopping</button> </Link>
           </div>
         </div>

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getProducts } from '../../api/products';
+import { getProducts } from '../api/products';
 import { CartContext } from '../../utils/cartContext';
 
 const Product = () => {

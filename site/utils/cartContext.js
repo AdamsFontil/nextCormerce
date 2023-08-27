@@ -84,6 +84,13 @@ export const CartProvider = ({ children }) => {
     return totalItems;
   }
 
+  const clearCart = () => {
+    console.log('clearing cart');
+    localStorage.removeItem('cart');
+    setSavedCart([]);
+  };
+
+
   return (
     <CartContext.Provider
       value={{
@@ -92,7 +99,8 @@ export const CartProvider = ({ children }) => {
         handleDecreaseQuantity,
         handleRemoveItem,
         totalPrice,
-        totalItems
+        totalItems,
+        clearCart
       }}
     >
       {children}
