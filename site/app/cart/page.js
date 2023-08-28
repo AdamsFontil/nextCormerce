@@ -57,13 +57,13 @@ const Cart = () => {
 
 
   return (
-    <main className='flex align-middle p-5 flex-col gap-3'>
+    <main className='flex justify-center p-5 flex-col gap-3'>
       <h1 className='md:text-4xl flex justify-center'>Items in your cart</h1>
 
 
-      <div className="overflow-x-auto p-5 align-middle">
+      <div className="overflow-x-auto  p-5 align-middle">
         <table className="table">
-          <thead>
+          <thead className=''>
             <tr>
               <th>Item</th>
               <th>Price</th>
@@ -73,7 +73,7 @@ const Cart = () => {
           </thead>
           <tbody>
             {savedCart.map((item, index) => (
-              <tr key={index}>
+              <tr className='items-center' key={index}>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -82,18 +82,20 @@ const Cart = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{item.name}</div>
-                      <div className="text-sm opacity-50">{item.description}</div>
+                      <div className="font-bold">{item.title}</div>
+                      <div className="text-sm opacity-50">{item.name}</div>
                     </div>
                   </div>
                 </td>
                 <td>
                   {item.price}
                 </td>
-                <td>
+                <td className=' '>
+                  <div className='flex justify-start gap-1 items-center'>
                 <button onClick={() => handleDecreaseQuantity(item)} className="btn btn-ghost btn-xs" disabled={item.amount === 1}>-</button>
                   {item.amount}
                   <button onClick={() => handleIncreaseQuantity(item)} className="btn btn-ghost btn-xs">+</button>
+                  </div>
               </td>
                 <th>
                   <button onClick={() => handleRemoveItem(item)} className="btn btn-ghost btn-xs">Remove</button>
@@ -110,10 +112,10 @@ const Cart = () => {
           <div className="stat-title">Total</div>
           <div className="stat-value">{totalPrice()}</div>
           <div className="stat-actions flex gap-2">
-          <button onClick={handleCheckout} className="btn btn-sm btn-success" disabled={isLoading}>
+          <button onClick={handleCheckout} className="btn btn-success" disabled={isLoading}>
               {isLoading ? 'Processing...' : 'Checkout'}
             </button>
-            <Link href={'/products'} ><button className="btn btn-sm">Continue Shopping</button> </Link>
+            <Link href={'/products'} ><button className="btn btn-secondary">Continue Shopping</button> </Link>
           </div>
         </div>
 
