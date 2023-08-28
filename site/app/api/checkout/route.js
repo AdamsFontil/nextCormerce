@@ -20,9 +20,9 @@ export async function POST(request) {
     shipping_address_collection: {
       allowed_countries: ['US']
     },
-    shipping_options: [{
-      shipping_rate: "shr_1NjBfmDwNGqPBW672HbnNudi"
-    }],
+    // shipping_options: [{
+    //   shipping_rate: "shr_1NjBfmDwNGqPBW672HbnNudi"
+    // }],
     billing_address_collection: "auto",
     success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/cart`

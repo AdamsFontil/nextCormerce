@@ -1,0 +1,15 @@
+# GET https://little-violet-3254.fly.dev/api/collections/reviews/records
+
+
+
+POST https://little-violet-3254.fly.dev/api/collections/reviews/records
+Content-Type: application/json
+
+{
+    "avatar": "test",
+    "product": "vdbih4lm74l512q",
+    "title": "Best Bag Ever",
+    "reviewer": "Jane Doe",
+    "rating": 5,
+    "content": "This bag is absolutely fantastic. It has so much space and looks great!"
+}

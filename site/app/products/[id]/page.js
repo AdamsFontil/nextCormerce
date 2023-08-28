@@ -69,7 +69,7 @@ const ProductDetails = () => {
         </div>
       </div>
     </div>
-    <Reviews />
+    <Reviews id={id} />
   </div>
 
 
