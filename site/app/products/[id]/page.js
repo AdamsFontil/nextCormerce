@@ -1,7 +1,7 @@
 'use client'
 import { useQuery } from 'react-query';
 import { useParams } from 'next/navigation';
-import { getOneProduct } from '@/api/products';
+import { getOneProduct } from '../../api/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import Carrousel from '../../../components/Carrousel'

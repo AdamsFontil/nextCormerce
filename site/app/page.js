@@ -5,13 +5,14 @@ import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import ThemeToggleButton from '@/components/ThemeToggleButton';
 
 const Home = () => {
 
 
   return (
   <main>
-    <div className="card lg:card-side bg-base-100 p-5 shadow-xl">
+    <div className="card  lg:card-side p-5 shadow-xl">
   <div className="card-body">
     <h2 className="card-title">Welcome to Santa's Collections and Beauty</h2>
     <div className='flex gap-12 flex-col'>
@@ -23,7 +24,11 @@ const Home = () => {
               be the logo of the main page </p>
     </div>
     <div className="card-actions justify-end">
-      <Link href='/products' ><button className="btn btn-primary">Shop Now</button> </Link>
+      <Link href='/products' ><button className="btn btn-primary btn-mytheme_dark-primary">Shop Now</button> </Link>
+      <Link href='/products' ><button className="btn btn-secondary btn-mytheme_dark-secondary">Shop Now</button> </Link>
+      <Link href='/products' ><button className="btn btn-accent btn-mytheme_dark-accent">Shop Now</button> </Link>
+      {/* <Link href='/products' ><button className="btn btn-primary">Shop Now</button> </Link>
+      <Link href='/products' ><button className="btn btn-primary">Shop Now</button> </Link> */}
     </div>
 
   </div>

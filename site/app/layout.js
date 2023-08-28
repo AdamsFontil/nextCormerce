@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CartProvider } from '../utils/cartContext';
 import Providers from '../utils/reactQueryProvider'
 import CartInfo from '@/components/cartInfo';
+import ThemeToggleButton from '@/components/ThemeToggleButton';
 
 
 
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
       <Providers>
       <CartProvider>
       <body>
-        <main >
+        <main className='' >
 
 
 
@@ -66,9 +67,7 @@ export default function RootLayout({ children }) {
           </Link>
         </li> */}
         <li>
-          <Link href="/account" class="justify-between">
-            Light/Dark Mode
-          </Link>
+          <ThemeToggleButton />
         </li>
         <li>
           <Link href="/account" class="justify-between">

@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
+
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,17 +10,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Light mode colors
-        primary: '#FF6347', // Red-400 (or your desired primary color)
-        secondary: '#191970', // Midnight Blue (or your desired secondary color)
-        accent: '#C0C0C0', // Silver (or your desired accent color)
 
-        // Dark mode colors
-        dark: {
-          primary: '#FF5733', // Replace with your desired primary color for dark mode
-          secondary: '#191970', // Midnight Blue (same as light mode)
-          accent: '#C0C0C0', // Silver (same as light mode)
-        },
+
       },
       fontFamily: {
         // Set your desired font families for headings and body text
@@ -42,7 +35,21 @@ module.exports = {
               error: '#EF4444', // Red (or your desired error color)
             },
           },
+          {
+            mytheme_dark: {
+              primary: '#DB2777', // Keeping the same primary color
+              secondary: '#4B5563',
+              accent: '#FBBF24',
+              neutral: '#6B7280',
+              'base-100': '#1f2937',
+              info: '#60A5FA',
+              success: '#34D399',
+              warning: '#F97316',
+              error: '#EF4444',
+            },
+          }
         ],
+
       },
       plugins: [
         require('@tailwindcss/forms'), // Include this if you want to use Tailwind CSS forms
