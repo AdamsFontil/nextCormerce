@@ -41,9 +41,8 @@ const Carousel = ({ productName }) => {
       ))}
 
       {/* ImageModal */}
-      <dialog id="my_modal_2" className="modal " onClick={handleCloseModal}>
-        <form method="dialog" className="modal-box w-4/5 h-5/6">
-          {/* Display the selected image */}
+      <dialog id="my_modal_2" className="modal w-full h-full  " onClick={handleCloseModal}>
+        <form method="dialog" className="modal-box w-4/5 md:h-5/6 m-12">
           {selectedImageIndex !== null && (
             <Image
               width={720}
@@ -53,8 +52,6 @@ const Carousel = ({ productName }) => {
               alt={imageFilenames[selectedImageIndex]}
             />
           )}
-          <p className="py-4">Here's a close up, so you can see things better </p>
-          <button className="btn" onClick={handleCloseModal}>Close</button>
         </form>
         {/* <form method="dialog" className="modal-backdrop">
           <button className="btn" onClick={handleCloseModal}>Close</button>
