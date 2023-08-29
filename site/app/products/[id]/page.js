@@ -31,7 +31,7 @@ const ProductDetails = () => {
 
   console.log('productDeets----', details);
   console.log('description----', details.description);
-  const { savedCart, handleIncreaseQuantity, handleDecreaseQuantity, handleRemoveItem, totalPrice } = useContext(CartContext);
+  const { savedCart, handleIncreaseQuantity, handleDecreaseQuantity } = useContext(CartContext);
   const cartItem = savedCart.find((item) => item.name === details.name);
   const quantityInCart = cartItem ? cartItem.amount : 0;
 

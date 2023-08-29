@@ -44,7 +44,6 @@ const Reviews = ({ id }) => {
             <div className="review-author">by: {review.reviewer}</div>
             <div className="review-rating">Rating: {review.rating}/5</div>
             <div className="review-content">Review: {review.content}</div>
-
           </div>
         ))}
       </div>
